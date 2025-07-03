@@ -1,7 +1,7 @@
 # aplicacion-fullstack
 Ejercicio de programacion
 
-#Pasos de instalacion
+# Pasos de instalacion
 - Dentro de vscode utilizaras git clone de esta rama en el repositorio
 - Una vez clonado necesitaras tener instalado Docker Desktop y Docker Compose
 - En la terminal que esta dentro de la carpeta del proyecto (a el que le hiciste clone) ejecutaras docker-compose up -d
