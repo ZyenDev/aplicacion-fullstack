@@ -21,3 +21,6 @@ Esto lo puedes probar desde Postman usando http://localhost:1880/api/datos y htt
 
 Falto la integracion de un Frontend en Next.Js ya que de momento desconozco como usarlo
 Tuve problemas al hacer un post para crear los pedidos, por ende esta en progreso
+
+# ¿Como se empezo el proyecto?
+Despues de probar un buen rato ambas herramientas como Hasura (por lo interesante que fue GraphiQL) y Node-RED, opte por preguntar a la IA como puedo integrar estas tecnologias en Docker, ya que nunca lo he utilizado, al tener un docker-compose.yml listo, empece a escalarlo poco a poco hasta que pude iniciar despues de distintos intentos los servicios requeridos en el ejercicio, con esto pude integrar el init.sql para que docker dentro de postgres integrara una base de datos como la que se pide con datos poblados al arrancar
