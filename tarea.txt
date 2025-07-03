@@ -1,0 +1,54 @@
+Tarea para Programador Jr.: Aplicación Full-Stack con Next.js, Node-RED, Hasura y PostgreSQL
+
+Objetivo: El objetivo de esta tarea es evaluar la capacidad del candidato para integrar diferentes tecnologías en un entorno de desarrollo moderno, demostrando habilidades en desarrollo frontend (Next.js), backend (Node-RED), gestión de datos (PostgreSQL, Hasura) y contenerización (Docker).
+
+Descripción General:
+Se solicita desarrollar una aplicación web sencilla utilizando Next.js en el frontend. Esta aplicación debe comunicarse con un entorno de Node-RED, el cual actuará como una capa de integración y orquestación. Node-RED, a su vez, obtendrá datos de una base de datos PostgreSQL, la cual estará expuesta a través de Hasura. Todos los componentes (PostgreSQL, Hasura, Node-RED) deberán ejecutarse en contenedores Docker.
+
+Requisitos Específicos:
+
+Base de Datos (PostgreSQL):
+
+Crear una base de datos PostgreSQL.
+Dentro de la base de datos, crear dos tablas:
+
+clientes:
+id (PRIMARY KEY, UUID o SERIAL)
+nombre (VARCHAR)
+apellido (VARCHAR)
+email (VARCHAR, UNIQUE)
+
+pedidos:
+id (PRIMARY KEY, UUID o SERIAL)
+cliente_id (FOREIGN KEY a clientes.id)
+producto (VARCHAR)
+cantidad (INTEGER)
+fecha_pedido (TIMESTAMP con zona horaria)
+
+Poblar ambas tablas con al menos 3-5 registros de información de prueba coherente.
+Hasura:
+
+Configurar Hasura para que se conecte a la base de datos PostgreSQL.
+Exponer las tablas clientes y pedidos a través de la API GraphQL de Hasura.
+Asegurarse de que Hasura esté accesible desde Node-RED.
+Node-RED:
+
+Crear un flujo en Node-RED que actúe como un endpoint HTTP (por ejemplo, /api/datos).
+Este endpoint debe ser capaz de realizar una consulta GraphQL a Hasura para obtener la lista de clientes y sus pedidos asociados.
+El flujo debe responder con los datos obtenidos de Hasura en formato JSON.
+Opcional (pero recomendado): Implementar un endpoint adicional para, por ejemplo, obtener un cliente por ID o crear un nuevo pedido.
+Frontend (Next.js):
+
+Crear una aplicación Next.js.
+Desde el frontend, realizar una solicitud (usando fetch o axios) al endpoint de Node-RED para obtener los datos.
+Mostrar la información obtenida (clientes y sus pedidos) de cualquier manera visualmente clara en la interfaz de usuario. Esto podría ser una tabla, una lista de tarjetas, etc. La estética no es el foco principal, sino la funcionalidad.
+Docker:
+
+Proveer un archivo docker-compose.yml que permita levantar todos los servicios necesarios: PostgreSQL, Hasura y Node-RED.
+Asegurarse de que los servicios puedan comunicarse entre sí dentro de la red Docker.
+Las bases de datos deben ser persistentes (usar volúmenes).
+Entregables:
+
+Un repositorio de GitHub (o similar) con todo el código fuente de la aplicación Next.js, los flujos de Node-RED (exportados como JSON), el archivo docker-compose.yml, y cualquier script SQL para la creación y población de la base de datos.
+Instrucciones claras en el README.md del repositorio sobre cómo levantar y ejecutar la aplicación localmente (incluyendo los comandos Docker).
+Una breve descripción de las decisiones técnicas tomadas.
