@@ -18,3 +18,6 @@ Puedes acceder a Node-RED desde los puertos que estan en Docker Desktop o utiliz
 - Pegas el codigo o seleccionas el archivo para importarlo
 
 Esto lo puedes probar desde Postman usando http://localhost:1880/api/datos y http://localhost:1880/api/cliente/"id en numerico sin las comillas"
+
+Falto la integracion de un Frontend en Next.Js ya que de momento desconozco como usarlo
+Tuve problemas al hacer un post para crear los pedidos, por ende esta en progreso
