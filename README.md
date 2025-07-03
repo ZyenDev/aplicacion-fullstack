@@ -4,10 +4,17 @@ Ejercicio de programacion
 # Pasos de instalacion
 - Dentro de vscode utilizaras git clone de esta rama en el repositorio
 - Una vez clonado necesitaras tener instalado Docker Desktop y Docker Compose
-- En la terminal que esta dentro de la carpeta del proyecto (a el que le hiciste clone) ejecutaras docker-compose up -d
+- En la terminal que esta dentro de la carpeta del proyecto (a el que le hiciste clone) ejecutaras:
+
+ docker-compose up -d
+
 - Esto iniciara los servicios dentro del contenedor
 
-Una vez finalizado el proceso utiliza docker-compose ps para ver si los servicios arrancaron y observar sus puertos
+Una vez finalizado el proceso utiliza:
+
+docker-compose ps
+
+para ver si los servicios arrancaron y observar sus puertos
 Puedes acceder a Node-RED desde los puertos que estan en Docker Desktop o utilizar localhost con los puertos que te extrajo la terminal al ejecutar el comando anterios
 
 # Pasos para importar los nodos de Node-RED
