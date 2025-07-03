@@ -1,0 +1,186 @@
+[
+    {
+        "id": "fb5db6c9c922bea3",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5a3b31a025a49363",
+        "type": "http in",
+        "z": "fb5db6c9c922bea3",
+        "name": "/api/datos",
+        "url": "/api/datos",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 360,
+        "wires": [
+            [
+                "7957507c8ce50aad"
+            ]
+        ]
+    },
+    {
+        "id": "7957507c8ce50aad",
+        "type": "function",
+        "z": "fb5db6c9c922bea3",
+        "name": "Query clientes",
+        "func": "msg.headers = {\n  'Content-Type': 'application/json',\n  'x-hasura-admin-secret': 'myadminsecret'\n};\n\nmsg.payload = {\n  query: `\n    query {\n      clientes {\n        id\n        nombre\n        apellido\n        email\n        pedidos {\n          id\n          producto\n          cantidad\n          fecha_pedido\n        }\n      }\n    }\n  `\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 360,
+        "wires": [
+            [
+                "ed33514e9e272674"
+            ]
+        ]
+    },
+    {
+        "id": "ed33514e9e272674",
+        "type": "http request",
+        "z": "fb5db6c9c922bea3",
+        "name": "Peticion",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://hasura:8080/v1/graphql",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 620,
+        "y": 360,
+        "wires": [
+            [
+                "d74e0f300bbd6239"
+            ]
+        ]
+    },
+    {
+        "id": "6462cb4a7459f209",
+        "type": "http response",
+        "z": "fb5db6c9c922bea3",
+        "name": "Respuesta",
+        "statusCode": "",
+        "headers": {},
+        "x": 970,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "d74e0f300bbd6239",
+        "type": "json",
+        "z": "fb5db6c9c922bea3",
+        "name": "PARSER Json",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 800,
+        "y": 360,
+        "wires": [
+            [
+                "6462cb4a7459f209"
+            ]
+        ]
+    },
+    {
+        "id": "983fbc3eb7fbdb1c",
+        "type": "http in",
+        "z": "fb5db6c9c922bea3",
+        "name": "/api/cliente/:id",
+        "url": "/api/cliente/:id",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 300,
+        "wires": [
+            [
+                "eaa4fd565974effa"
+            ]
+        ]
+    },
+    {
+        "id": "eaa4fd565974effa",
+        "type": "function",
+        "z": "fb5db6c9c922bea3",
+        "name": "Query cliente por id",
+        "func": "const id = msg.req.params.id;\n\nmsg.headers = {\n  \"Content-Type\": \"application/json\",\n  \"x-hasura-admin-secret\": \"myadminsecret\"\n};\n\nmsg.payload = {\n  query: `\n    query GetCliente($id: Int!) {\n      clientes_by_pk(id: $id) {\n        id\n        nombre\n        apellido\n        email\n        pedidos {\n          id\n          producto\n          cantidad\n          fecha_pedido\n        }\n      }\n    }\n  `,\n  variables: {\n    id: parseInt(id)\n  }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 300,
+        "wires": [
+            [
+                "b1bfa5805119a92a"
+            ]
+        ]
+    },
+    {
+        "id": "b1bfa5805119a92a",
+        "type": "http request",
+        "z": "fb5db6c9c922bea3",
+        "name": "Peticion",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://hasura:8080/v1/graphql",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 640,
+        "y": 300,
+        "wires": [
+            [
+                "085836b1c10b115b"
+            ]
+        ]
+    },
+    {
+        "id": "daad77c1e0a0ed93",
+        "type": "http response",
+        "z": "fb5db6c9c922bea3",
+        "name": "Respuesta",
+        "statusCode": "",
+        "headers": {},
+        "x": 990,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "085836b1c10b115b",
+        "type": "json",
+        "z": "fb5db6c9c922bea3",
+        "name": "PARSER Json",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 820,
+        "y": 300,
+        "wires": [
+            [
+                "daad77c1e0a0ed93"
+            ]
+        ]
+    }
+]
