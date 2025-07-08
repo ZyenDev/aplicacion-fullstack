@@ -1,0 +1,7 @@
+nodered/.config.nodes.json
+nodered/.config.runtime.json
+nodered/.config.runtime.json.backup
+nodered/.config.users.json
+nodered/.config.users.json.backup
+nodered/package.json
+nodered/settings.js
